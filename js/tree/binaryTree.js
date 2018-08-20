@@ -1,45 +1,48 @@
-function Node ({left, right, value}) {
+function Node ({left = null, right = null, key = null, value = null, parent = null}) {
     this.left = left;
     this.right = right;
+    this.key = key;
     this.value = value;
+    this.parent = parent;
 }
 
 
-function Tree (key) {
+function Tree ({key, value, parent}) {
     this.root = new Node({
         left: null,
         right: null,
         key: key,
-        value: value
+        value: value,
+        parent: parent
     })
 }
 
 Tree.prototype.toString = function () {
 
-}
+};
 
-Tree.prototype.treeInsert = function (node) {
-    const tree = this.tree;
+Tree.prototype.treeInsert = function (tree, newNode) {
+    let y = null;
+    let x = tree.root;
 
-    const currentNode = null;
-    const x = tree.root;
     while (x !== null ){
-        currentNode = x;
-        if (z.key < x.key) {
+        y = x;
+        if (newNode.key < x.key) {
             x = x.left;
         } else {
             x = x.right;
         }
     }
-    node.root = currentNode;
+
+    newNode.root = y;
     if (y === null) {
-        tree.root = node;
-    } else if (z.key < y.key) {
-        y.left = node;
+        tree.parent = newNode;
+    } else if (newNode.key < y.key) {
+        y.left = newNode;
     } else {
-        y.right = node;
+        y.right = newNode;
     }
-}
+};
 
 Tree.prototype.treeSearch = function (root, key) {
     if (root === null || key === root.key) {
@@ -50,5 +53,16 @@ Tree.prototype.treeSearch = function (root, key) {
     } else {
         return this.treeSearch(root.right, key);
     }
-}
+};
 
+var tree = new Tree({key: 4, value: 4});
+
+tree.treeInsert(tree, new Node({key: 2, value: 2}));
+tree.treeInsert(tree, new Node({key: 3, value: 3}));
+tree.treeInsert(tree, new Node({key: 5, value: 5}));
+tree.treeInsert(tree, new Node({key: 10, value: 10}));
+
+
+console.log(tree);
+
+console.log(tree.treeSearch(tree.root, 5));
