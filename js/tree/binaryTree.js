@@ -15,10 +15,10 @@ function Tree ({key}) {
     })
 }
 
-Tree.prototype.toString = function (node) {
-    node.left && this.toString(node.left);
-    node.right && this.toString(node.right);
-    return node && node.key;
+Tree.prototype.toString = function (node, arr) {
+    node.left && this.toString(node.left, arr);
+    node.right && this.toString(node.right, arr);
+    return node && arr.push(node.key) ;
 };
 
 Tree.prototype.treeInsert = function (tree, newNode) {
@@ -67,4 +67,6 @@ console.log(tree);
 
 console.log(tree.treeSearch(tree.root, 5));
 
-console.log(tree.toString(tree.root));
+const arr = [];
+tree.toString(tree.root, arr);
+console.log(arr.join(','));
