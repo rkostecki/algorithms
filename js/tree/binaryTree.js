@@ -1,46 +1,46 @@
-function Node ({left = null, right = null, key = null, value = null, parent = null}) {
+function Node ({left = null, right = null, key = null, p = null}) {
     this.left = left;
     this.right = right;
     this.key = key;
-    this.value = value;
-    this.parent = parent;
+    this.p = p;
 }
 
 
-function Tree ({key, value, parent}) {
+function Tree ({key}) {
     this.root = new Node({
         left: null,
         right: null,
         key: key,
-        value: value,
-        parent: parent
+        p: null
     })
 }
 
-Tree.prototype.toString = function () {
-
+Tree.prototype.toString = function (node) {
+    node.left && this.toString(node.left);
+    node.right && this.toString(node.right);
+    return node && node.key;
 };
 
 Tree.prototype.treeInsert = function (tree, newNode) {
-    let y = null;
-    let x = tree.root;
+    let memCurrNode = null;
+    let currNode = tree.root;
 
-    while (x !== null ){
-        y = x;
-        if (newNode.key < x.key) {
-            x = x.left;
+    while (currNode !== null ){
+        memCurrNode = currNode;
+        if (newNode.key < currNode.key) {
+            currNode = currNode.left;
         } else {
-            x = x.right;
+            currNode = currNode.right;
         }
     }
 
-    newNode.root = y;
-    if (y === null) {
-        tree.parent = newNode;
-    } else if (newNode.key < y.key) {
-        y.left = newNode;
+    newNode.p = memCurrNode; //?????
+    if (memCurrNode === null) {
+        tree.root = newNode;
+    } else if (newNode.key < memCurrNode.key) {
+        memCurrNode.left = newNode;
     } else {
-        y.right = newNode;
+        memCurrNode.right = newNode;
     }
 };
 
@@ -66,3 +66,5 @@ tree.treeInsert(tree, new Node({key: 10, value: 10}));
 console.log(tree);
 
 console.log(tree.treeSearch(tree.root, 5));
+
+console.log(tree.toString(tree.root));
