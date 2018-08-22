@@ -1,0 +1,15 @@
+{
+  "name": "algorithms",
+  "version": "1.0.0",
+  "description": "Algorithms based by Corman book",
+  "main": "index.js",
+  "repository": "https://github.com/rkostecki/algorithms.git",
+  "author": "Rafał Kostecki",
+  "license": "MIT",
+  "dependencies": {
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha \"./js/**/*.spec.js\""
+  }
+}

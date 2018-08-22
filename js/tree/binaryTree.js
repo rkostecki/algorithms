@@ -5,27 +5,30 @@ function Node ({left = null, right = null, key = null, p = null}) {
     this.p = p;
 }
 
-
-function Tree ({key}) {
-    this.root = new Node({
-        left: null,
-        right: null,
-        key: key,
-        p: null
-    })
+function Tree () {
+    this.root = null;
 }
 
-Tree.prototype.toString = function (node, arr) {
-    node.left && this.toString(node.left, arr);
-    node.right && this.toString(node.right, arr);
-    return node && arr.push(node.key) ;
+Tree.prototype.traverseTree = function (callback) {
+
+    const traverseRecursive = function (node, callback) {
+        node.left && traverseRecursive(node.left, callback);
+        node.right && traverseRecursive(node.right, callback);
+        return node && callback(node);
+    };
+
+    return traverseRecursive(this.root, callback)
 };
 
-Tree.prototype.treeInsert = function (tree, newNode) {
+Tree.prototype.treeInsert = function (newNode) {
+    treeInsert(this, newNode);
+};
+
+function treeInsert (tree, newNode) {
     let memCurrNode = null;
     let currNode = tree.root;
 
-    while (currNode !== null ){
+    while (currNode !== null) {
         memCurrNode = currNode;
         if (newNode.key < currNode.key) {
             currNode = currNode.left;
@@ -42,31 +45,47 @@ Tree.prototype.treeInsert = function (tree, newNode) {
     } else {
         memCurrNode.right = newNode;
     }
-};
+}
 
-Tree.prototype.treeSearch = function (root, key) {
-    if (root === null || key === root.key) {
-        return root;
+Tree.prototype.treeSearch = function (node, key) {
+    if (node === null || key === node.key) {
+        return node;
     }
-    if (key < root.key) {
-        return this.treeSearch(root.left, key);
+    if (key < node.key) {
+        return this.treeSearch(node.left, key);
     } else {
-        return this.treeSearch(root.right, key);
+        return this.treeSearch(node.right, key);
     }
 };
 
-var tree = new Tree({key: 4, value: 4});
+Tree.prototype.iterativeTreeSearch = function (key) {
+    let node = this.root;
 
-tree.treeInsert(tree, new Node({key: 2, value: 2}));
-tree.treeInsert(tree, new Node({key: 3, value: 3}));
-tree.treeInsert(tree, new Node({key: 5, value: 5}));
-tree.treeInsert(tree, new Node({key: 10, value: 10}));
+    while (node !== null && key !== node.key) {
+        if (key < node.key) {
+            node = node.left;
+        } else {
+            node = node.right;
+        }
+    }
+    return node;
+};
 
+Tree.prototype.treeMinimum = function (node) {
+    while (node.left !== null) {
+        node = node.left;
+    }
+    return node;
+};
 
-console.log(tree);
+Tree.prototype.treeMaximum = function (node) {
+    while (node.right !== null) {
+        node = node.right;
+    }
+    return node;
+};
 
-console.log(tree.treeSearch(tree.root, 5));
-
-const arr = [];
-tree.toString(tree.root, arr);
-console.log(arr.join(','));
+module.exports = {
+    Tree,
+    Node
+};
