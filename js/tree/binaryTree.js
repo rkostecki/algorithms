@@ -47,15 +47,19 @@ function treeInsert (tree, newNode) {
     }
 }
 
-Tree.prototype.treeSearch = function (node, key) {
-    if (node === null || key === node.key) {
-        return node;
-    }
-    if (key < node.key) {
-        return this.treeSearch(node.left, key);
-    } else {
-        return this.treeSearch(node.right, key);
-    }
+Tree.prototype.treeSearch = function (key) {
+    const recursiveTreeSearch = function (node, key) {
+        if (node === null || key === node.key) {
+            return node;
+        }
+        if (key < node.key) {
+            return recursiveTreeSearch(node.left, key);
+        } else {
+            return recursiveTreeSearch(node.right, key);
+        }
+    };
+
+    return recursiveTreeSearch(this.root, key);
 };
 
 Tree.prototype.iterativeTreeSearch = function (key) {
@@ -71,18 +75,28 @@ Tree.prototype.iterativeTreeSearch = function (key) {
     return node;
 };
 
-Tree.prototype.treeMinimum = function (node) {
-    while (node.left !== null) {
-        node = node.left;
-    }
-    return node;
+Tree.prototype.treeMinimum = function () {
+
+    const treeMinimum = function (node) {
+        while (node.left !== null) {
+            node = node.left;
+        }
+        return node;
+    };
+
+    return treeMinimum(this.root);
 };
 
-Tree.prototype.treeMaximum = function (node) {
-    while (node.right !== null) {
-        node = node.right;
+Tree.prototype.treeMaximum = function () {
+    const treeMaximum = function (node) {
+        while (node.right !== null) {
+            node = node.right;
+        }
+        return node;
     }
-    return node;
+
+    return treeMaximum(this.root);
+
 };
 
 module.exports = {
