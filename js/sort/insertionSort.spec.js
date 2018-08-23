@@ -2,24 +2,37 @@ const insertionSort = require('./insertionSort');
 const {expect} = require('chai');
 
 describe('InsertionSort tests', () => {
-    it('sort empty array', () => {
+    it('sorts empty array', () => {
         const array = [];
 
         insertionSort(array);
         expect(array).to.deep.equal([]);
     });
 
-    it('sort 1 element', () => {
+    it('sorts 1 elements array', () => {
         const array = [2];
 
         insertionSort(array);
         expect(array).to.deep.equal([2]);
     });
 
-    it('sort 2 elements', () => {
+    it('sorts 2 elements array', () => {
         const array = [2, 1];
 
         insertionSort(array);
         expect(array).to.deep.equal([1, 2]);
-    })
+    });
+
+    it('sorts 2 elements array', () => {
+
+        const array = [2, 1];
+
+        insertionSort(array);
+        expect(array).to.deep.equal([1, 2]);
+    });
 });
+
+function generateArray (max) {
+    const arr = [];
+    for(i = 0; )
+}
