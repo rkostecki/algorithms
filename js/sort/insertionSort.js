@@ -1,5 +1,6 @@
-let key = 0;
 function insertionSort (A) {
+    let key = 0;
+
     for (let j = 1; j < A.length; j++) {
         key = A[j];
         let i = j - 1;
@@ -11,3 +12,5 @@ function insertionSort (A) {
     }
 
 }
+
+module.exports = insertionSort;
