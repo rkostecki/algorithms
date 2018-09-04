@@ -40,7 +40,6 @@ describe('Binary Tree tests', () => {
         });
     });
 
-
     describe('Finding node and delete', () => {
         it('find node 5 and delete it', () => {
             expect(tree.inorderTreeWalk()).to.deep.equal([ 2, 3, 4, 5, 10 ]);
@@ -51,9 +50,30 @@ describe('Binary Tree tests', () => {
             expect(tree.treeSearch(5)).to.be.null;
 
             expect(tree.inorderTreeWalk()).to.deep.equal([ 2, 3, 4, 10 ]);
+
+        });
+
+        it('find node 10 and delete it', () => {
+            expect(tree.inorderTreeWalk()).to.deep.equal([ 2, 3, 4, 10 ]);
+
+            const foundNode10 = tree.treeSearch(10);
+            expect(foundNode10.key).to.equal(10);
+            tree.treeDelete(foundNode10);
+            expect(tree.treeSearch(10)).to.be.null;
+            expect(tree.inorderTreeWalk()).to.deep.equal([2, 3, 4]);
+
+        });
+        it('delete rest of nodes', () => {
+            expect(tree.inorderTreeWalk()).to.deep.equal([ 2, 3, 4]);
+            [ 2, 3, 4].forEach(key => {
+                const found = tree.treeSearch(key);
+                expect(found.key).to.equal(key);
+                tree.treeDelete(found);
+                expect(tree.treeSearch(key)).to.be.null;
+            });
+            expect(tree.inorderTreeWalk()).to.deep.equal([]);
         });
     });
-
 });
 
 
