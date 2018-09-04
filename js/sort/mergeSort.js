@@ -35,7 +35,3 @@ function mergeSort (A, p, r) {
 }
 
 module.exports = mergeSort;
-// const testSequence = [40, 4, 10, 11, 3, 300, 1, 1, 10];
-// console.log(testSequence);
-// mergeSort(testSequence, 1, testSequence.length);
-// console.log(testSequence);

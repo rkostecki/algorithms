@@ -40,4 +40,4 @@ function randomInt () {
 module.exports = {
     isSorted,
     generateRandomNumbers
-} 
+};

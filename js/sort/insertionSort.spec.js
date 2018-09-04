@@ -1,6 +1,5 @@
 const insertionSort = require('./insertionSort');
 const {expect} = require('chai');
-const crypto = require('crypto');
 const {isSorted, generateRandomNumbers} = require('../tests')
 
 describe('InsertionSort tests', () => {
