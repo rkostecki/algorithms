@@ -33,7 +33,7 @@ function generateRandomNumbers (max) {
 }
 
 function randomInt () {
-    return parseInt(crypto.randomBytes(4).toString('hex'), 16);
+    return crypto.randomBytes(4).readUInt32BE(0, true);
 
 }
 

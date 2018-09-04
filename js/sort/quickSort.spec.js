@@ -34,9 +34,10 @@ describe('QuickSort tests', () => {
 
     it('generate 10000 numbers array', () => {
 
-        const res = Array.from(generateRandomNumbers(10000));
+        const res = Array.from(generateRandomNumbers(100));
+        console.log(res);
         expect(isSorted(res)).to.be.false;
-        quickSort(res, 0, 10000-1);
+        quickSort(res, 0, 100-1);
         expect(isSorted(res)).to.be.true;
     });
 });

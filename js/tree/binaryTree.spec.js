@@ -32,16 +32,28 @@ describe('Binary Tree tests', () => {
             expect(tree.treeMaximum().key).to.equal(10);
         });
     });
-    describe('Traverse tree', () => {
+    describe('Traverse tree in order', () => {
         it('traverse', () => {
-            const acc = [];
-            tree.traverseTree(node => {
-                acc.push(node.key);
-            });
-            expect(acc).to.deep.equal([ 3, 2, 10, 5, 4 ]);
-        });
+            const acc = tree.inorderTreeWalk();
 
+            expect(acc).to.deep.equal([ 2, 3, 4, 5, 10 ]);
+        });
     });
+
+
+    describe('Finding node and delete', () => {
+        it('find node 5 and delete it', () => {
+            expect(tree.inorderTreeWalk()).to.deep.equal([ 2, 3, 4, 5, 10 ]);
+
+            const foundNode = tree.treeSearch(5);
+            expect(foundNode.key).to.equal(5);
+            tree.treeDelete(foundNode);
+            expect(tree.treeSearch(5)).to.be.null;
+
+            expect(tree.inorderTreeWalk()).to.deep.equal([ 2, 3, 4, 10 ]);
+        });
+    });
+
 });
 
 
