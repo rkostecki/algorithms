@@ -1,27 +1,26 @@
-const insertionSort = require('./insertionSort');
+const mergeSort = require('./mergeSort');
 const {expect} = require('chai');
-const crypto = require('crypto');
 const {isSorted, generateRandomNumbers} = require('../tests')
 
-describe('InsertionSort tests', () => {
+describe('MergeSort tests', () => {
     it('sorts empty array', () => {
         const array = [];
 
-        insertionSort(array);
+        mergeSort(array, 0, 0);
         expect(array).to.deep.equal([]);
     });
 
     it('sorts 1 elements array', () => {
         const array = [2];
 
-        insertionSort(array);
+        mergeSort(array, 1, 1);
         expect(array).to.deep.equal([2]);
     });
 
     it('sorts 2 elements array', () => {
         const array = [2, 1];
 
-        insertionSort(array);
+        mergeSort(array, 1, 2);
         expect(array).to.deep.equal([1, 2]);
     });
 
@@ -29,7 +28,7 @@ describe('InsertionSort tests', () => {
 
         const array = [2, 1];
 
-        insertionSort(array);
+        mergeSort(array, 1, 2);
         expect(array).to.deep.equal([1, 2]);
     });
 
@@ -37,7 +36,7 @@ describe('InsertionSort tests', () => {
 
         const res = Array.from(generateRandomNumbers(10000));
         expect(isSorted(res)).to.be.false;
-        insertionSort(res);
+        mergeSort(res, 1, 10000);
         expect(isSorted(res)).to.be.true;
     });
 });
