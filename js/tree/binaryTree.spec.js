@@ -1,4 +1,5 @@
 const {expect} = require('chai');
+const {isSorted, generateRandomNumbers, GENERATED_ARRAY_SIZES} = require('../tests');
 
 const {Node, Tree} = require('./binaryTree');
 const tree = new Tree();
@@ -72,6 +73,49 @@ describe('Binary Tree tests', () => {
                 expect(tree.treeSearch(key)).to.be.null;
             });
             expect(tree.inorderTreeWalk()).to.deep.equal([]);
+        });
+    });
+
+    describe(`Generate tree with ${GENERATED_ARRAY_SIZES.SMALL} nodes`, () => {
+        let tree = new Tree();
+        it('generated', () => {
+            for (let key of generateRandomNumbers(GENERATED_ARRAY_SIZES.SMALL)) {
+                tree.treeInsert(new Node({key})); //root
+            }
+
+        });
+        it('sorted', () => {
+            expect(isSorted(tree.inorderTreeWalk())).to.be.true;
+            tree = null;
+        });
+    });
+
+    describe(`Generate tree with ${GENERATED_ARRAY_SIZES.MEDIUM} nodes`, () => {
+        let tree = new Tree();
+
+        it('generated', () => {
+            for (let key of generateRandomNumbers(GENERATED_ARRAY_SIZES.MEDIUM)) {
+                tree.treeInsert(new Node({key})); //root
+            }
+
+        });
+        it('sorted', () => {
+            expect(isSorted(tree.inorderTreeWalk())).to.be.true;
+            tree = null;
+        });
+    });
+
+    describe(`Generate tree with ${GENERATED_ARRAY_SIZES.LARGE} nodes`, () => {
+        let tree = new Tree();
+        it('generated', () => {
+            for (let key of generateRandomNumbers(GENERATED_ARRAY_SIZES.LARGE)) {
+                tree.treeInsert(new Node({key})); //root
+            }
+
+        });
+        it('sorted', () => {
+            expect(isSorted(tree.inorderTreeWalk())).to.be.true;
+            tree = null;
         });
     });
 });
