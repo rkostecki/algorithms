@@ -11,6 +11,6 @@
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "mocha \"./js/**/*.spec.js\""
+    "test": "mocha --timeout 10000 \"./js/**/*.spec.js\""
   }
 }

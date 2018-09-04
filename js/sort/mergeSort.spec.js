@@ -1,6 +1,6 @@
 const mergeSort = require('./mergeSort');
 const {expect} = require('chai');
-const {isSorted, generateRandomNumbers} = require('../tests')
+const {isSorted, generateRandomNumbers, GENERATED_ARRAY_SIZES} = require('../tests');
 
 describe('MergeSort tests', () => {
     it('sorts empty array', () => {
@@ -32,11 +32,24 @@ describe('MergeSort tests', () => {
         expect(array).to.deep.equal([1, 2]);
     });
 
-    it('generate 10000 numbers array', () => {
-
-        const res = Array.from(generateRandomNumbers(10000));
+    it(`generate ${GENERATED_ARRAY_SIZES.SMALL} numbers array`, () => {
+        const res = Array.from(generateRandomNumbers(GENERATED_ARRAY_SIZES.SMALL));
         expect(isSorted(res)).to.be.false;
-        mergeSort(res, 1, 10000);
+        mergeSort(res, 1, GENERATED_ARRAY_SIZES.SMALL);
+        expect(isSorted(res)).to.be.true;
+    });
+
+    it(`generate ${GENERATED_ARRAY_SIZES.MEDIUM} numbers array`, () => {
+        const res = Array.from(generateRandomNumbers(GENERATED_ARRAY_SIZES.MEDIUM));
+        expect(isSorted(res)).to.be.false;
+        mergeSort(res, 1, GENERATED_ARRAY_SIZES.MEDIUM);
+        expect(isSorted(res)).to.be.true;
+    });
+
+    it(`generate ${GENERATED_ARRAY_SIZES.LARGE} numbers array`, () => {
+        const res = Array.from(generateRandomNumbers(GENERATED_ARRAY_SIZES.LARGE));
+        expect(isSorted(res)).to.be.false;
+        mergeSort(res, 1, GENERATED_ARRAY_SIZES.LARGE);
         expect(isSorted(res)).to.be.true;
     });
 });

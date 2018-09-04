@@ -37,7 +37,14 @@ function randomInt () {
 
 }
 
+const GENERATED_ARRAY_SIZES = {
+    SMALL: 1000,
+    MEDIUM: 10000,
+    LARGE: 100000
+};
+
 module.exports = {
+    GENERATED_ARRAY_SIZES,
     isSorted,
     generateRandomNumbers
 };
