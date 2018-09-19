@@ -6,7 +6,7 @@ describe('arrayFlatten tests', () => {
         const array = [1, [2, 3], [4, 5, [6,7]]];
         const resArr = [];
 
-        console.log(arrayFlatten(array, resArr));
+        arrayFlatten(array, resArr);
         expect(resArr).to.deep.equal([1, 2, 3, 4, 5, 6, 7]);
     });
     it('arrayFlatten join, split', () => {
